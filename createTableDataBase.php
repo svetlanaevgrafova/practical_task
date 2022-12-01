@@ -1,5 +1,5 @@
 <?php
-include_once("connect.php");
+include_once("connectDataBase.php");
 
 $select_db = "USE practical_task_evgrafova";
 

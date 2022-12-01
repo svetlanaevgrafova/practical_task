@@ -62,6 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //   $users[] = $result;
 // }
 
-require 'index.html';
+require 'pageContactForm.html';
 
 exit;

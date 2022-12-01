@@ -25,6 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $applicants[] = $result;
   }
 }
-require 'applicants.html';
+require 'pageApplicants.html';
 
 exit;
