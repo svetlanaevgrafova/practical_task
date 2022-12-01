@@ -1,5 +1,7 @@
 <?php
 // $password = password_hash(trim($_REQUEST['password']));
+error_reporting(-1);
+ini_set('display_errors', 'On');
   
 $servername = "localhost";
 $username = "minada";
@@ -16,10 +18,12 @@ if (!$mysqli) {
 
 
 
+// Переменнная для определения пути, с которого мы попали на страницу
+
 // POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
-// declare variables from query
+  // declare variables from query
 
   $first_name = trim($_REQUEST['first_name']);
   $last_name = trim($_REQUEST['last_name']);
