@@ -57,14 +57,37 @@
   
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-      <li class="page-item"><a class=" page-link" href="?page=1">First</a></li>
-      <li class="page-item <?php if($page <= 1){ echo 'disabled'; } ?>">
-          <a class=" page-link" href="<?php if($page <= 1){ echo '#'; } else { echo "?page=".($page - 1); } ?>">Prev</a>
+      <li class="page-item">
+        <a class=" page-link" href="?page=1">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">First</span>
+        </a>
       </li>
-      <li class="page-item <?php if($page >= $total_pages){ echo 'disabled'; } ?>">
-          <a class=" page-link" href="<?php if($page >= $total_pages){ echo '#'; } else { echo "?page=".($page + 1); } ?>">Next</a>
+      <?php if($page > 1) : ?>
+      <li class="page-item"> 
+        <a class=" page-link" href="<?php echo "?page=".($page - 1); ?>">
+          <?php echo ($page - 1) ; ?>
+        </a>
+      <?php endif; ?>
       </li>
-      <li class="page-item"><a class=" page-link" href="?page=<?php echo $total_pages; ?>">Last</a></li>
+      <li class="page-item active">
+        <a class="page-link" href="#">
+          <?php echo $page; ?>
+          <span class="sr-only">(current)</span></a>
+      </li>
+      <?php if($page < $total_pages) : ?>
+      <li class="page-item"> 
+        <a class="page-link" href="<?php echo "?page=".($page + 1); ?>">
+          <?php echo ($page + 1) ; ?>
+        </a>
+      <?php endif; ?>
+      </li>
+      <li class="page-item">
+        <a class=" page-link" href="?page=<?php echo $total_pages; ?>">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Last</span>
+        </a>
+      </li>
     </ul>
   </nav>
   
