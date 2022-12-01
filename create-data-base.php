@@ -1,5 +1,5 @@
 <?php
-include_once("connectDataBase.php");
+include_once("connect-data-base.php");
 
 
 $sql = "CREATE DATABASE practical_task_evgrafova CHARACTER SET utf8 COLLATE utf8_general_ci";
