@@ -8,6 +8,7 @@ if (mysqli_query($link, $select_db)) {
 } else {
     echo "ERROR: Could not able to execute $select_db. " . mysqli_error($link);
 }
+
 // Attempt create table query execution
 $sql = "CREATE TABLE applicants(
     id INT(8) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -17,7 +18,7 @@ $sql = "CREATE TABLE applicants(
     gender VARCHAR(10) NOT NULL,
     profession VARCHAR(70) NOT NULL,
     description TEXT(200),
-    resume TEXT(200),
+    file TEXT(200),
     agreement BOOLEAN NOT NULL
   )
 ";

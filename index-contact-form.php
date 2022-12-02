@@ -1,4 +1,5 @@
 <?php
+
 // $password = password_hash(trim($_REQUEST['password']));
 error_reporting(-1);
 ini_set('display_errors', 'On');
@@ -31,37 +32,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $gender = trim($_REQUEST['gender']);
   $profession = trim($_REQUEST['profession']);
   $description = trim($_REQUEST['description']);
-  $resume = trim($_REQUEST['resume']);
   $agreement = trim($_REQUEST['agreement']) == "on";
-  
 
-  $query = "INSERT INTO applicants (first_name, last_name, email, gender, profession, description, resume, agreement) 
-  VALUES ('$first_name', '$last_name', '$email', '$gender', '$profession', '$description', '$resume', '$agreement')";
+  // сохранить в db
+  $query = "INSERT INTO applicants (first_name, last_name, email, gender, profession, description, agreement) 
+  VALUES ('$first_name', '$last_name', '$email', '$gender', '$profession', '$description', '$agreement')";
 
   if ($user_is_created = $mysqli->query($query)) {
   } else {
     echo("Error description: " . $mysqli -> error);
   }
 
-// echo "<pre>";
-// print_r($_REQUEST);
-// echo "</pre>";
+  // Узнать id последнего сохраненного пользователя
+  $last_id=$mysqli->insert_id;
+  
+  // Создать директорию applicants
+  $dir = "upload/applicants{$last_id}"; 
+  if(!is_dir($dir)) {
+    mkdir($dir, 0777, true);
+  }
 
-// echo "<pre>";
-// print_r($mysqli);
-// echo "</pre>";
+  // Загрузить файл
+  $path_file = NULL;
+  if ($_FILES && $_FILES["filename"]["error"]== UPLOAD_ERR_OK){
+    $path_file = "{$dir}/" . $_FILES["filename"]["name"];
+    move_uploaded_file($_FILES["filename"]["tmp_name"], $path_file);
+  }
 
-// echo "<pre>";
-// print_r($query);
-// echo "</pre>";
+  // Обновить applicants(file)  
 
+  // UPDATE `applicants` SET `file` = 'upload/applicants19/ozero-gory-kamni-ogon-koster.png' WHERE `applicants`.`id` = 18
+  $sql = "UPDATE applicants SET file = '{$path_file}' WHERE applicants.id = {$last_id}";
+
+  if (mysqli_query($mysqli, $sql)) {
+  } else {
+    echo "ERROR: Could not able to execute $sql." . mysqli_error($mysqli);
+  }
 }
-// $list_of_users = $mysqli->query("SELECT * FROM users");
-
-// while($result = mysqli_fetch_array($list_of_users, MYSQLI_ASSOC)) {
-//   $users[] = $result;
-// }
-
 require 'page-contact-form.html';
 
 exit;

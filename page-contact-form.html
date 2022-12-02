@@ -31,7 +31,7 @@
         <div class="col-sm-5 offset-md-3">
           <div class="card p-3 mb-5 ">
             <div class="card-body">
-              <form action="index-contact-form.php" method="post" id="form">
+              <form action="index-contact-form.php" method="post" enctype="multipart/form-data" id="form">
                 <h4 class="card-title card-title text-center">Форма связи</h4>
 
                 <div class="form-group my-3">
@@ -74,7 +74,8 @@
                 </div>
 
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="download_file" name="resume">
+                  <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                  <input type="file" class="custom-file-input" id="download_file" name="filename" size="10">
                   <label class="custom-file-label" for="download_file">Загрузите резюме</label>
                 </div>
 

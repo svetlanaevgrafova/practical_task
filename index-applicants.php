@@ -45,6 +45,7 @@ $res_data = mysqli_query($mysqli, $sql);
 while($row = mysqli_fetch_array($res_data, MYSQLI_ASSOC)){
   // Выводим логин пользователя
   $applicants[] = $row;
+  
 }
 require 'page-applicants.html';
 
