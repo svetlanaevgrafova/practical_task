@@ -2,9 +2,7 @@
 if(isset($_GET['path']))
 {
 //Читать url
-echo "<pre>";
-print_r($_GET);
-echo "</pre>";
+
                 
 
 $url = $_GET['path'];//Очистить кэш
