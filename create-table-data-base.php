@@ -1,13 +1,5 @@
 <?php
-include_once("connect-data-base.php");
-
-$select_db = "USE practical_task_evgrafova";
-
-if (mysqli_query($link, $select_db)) {
-    echo "Database selected successfully.";
-} else {
-    echo "ERROR: Could not able to execute $select_db. " . mysqli_error($link);
-}
+include_once("connect-select-db.php");
 
 // Attempt create table query execution
 $sql = "CREATE TABLE applicants(

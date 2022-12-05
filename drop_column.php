@@ -1,25 +1,13 @@
 <?php
+require "connect-select-db.php";
 
-$servername = "localhost";
-$username = "minada";
-$db_password = "fktrctqr";
-$db = "practical_task_evgrafova";
-
-// Create connection
-$mysqli = mysqli_connect($servername, $username, $db_password, $db);
-// Check connection
-if (!$mysqli) {
-  die("Connection failed: " . mysqli_connect_error());
-} 
 
 /*DELETE COLUMN*/
-
-
 $drop_column = "ALTER TABLE applicants
   DROP COLUMN resume
 ";
 
-if (mysqli_query($mysqli, $drop_column)) {
+if (mysqli_query($link, $drop_column)) {
   echo "Column deleted successfully." . "<br>";
 } else {
   echo "ERROR: Could not able to execute $drop_column." . mysqli_error($link);
@@ -27,4 +15,4 @@ if (mysqli_query($mysqli, $drop_column)) {
 }
 
 // Close connection
-mysqli_close($mysqli);
+mysqli_close($link);

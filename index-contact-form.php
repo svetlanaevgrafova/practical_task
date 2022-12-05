@@ -1,25 +1,10 @@
 <?php
+require "connect-select-db.php";
 
-// $password = password_hash(trim($_REQUEST['password']));
+// debug
 error_reporting(-1);
 ini_set('display_errors', 'On');
-  
-$servername = "localhost";
-$username = "minada";
-$db_password = "fktrctqr";
-$db = "practical_task_evgrafova";
-
-// Create connection
-$mysqli = mysqli_connect($servername, $username, $db_password, $db);
  
-// Check connection
-if (!$mysqli) {
-  die("Connection failed: " . mysqli_connect_error());
-}
-
-
-
-// Переменнная для определения пути, с которого мы попали на страницу
 
 // POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -38,13 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $query = "INSERT INTO applicants (first_name, last_name, email, gender, profession, description, agreement) 
   VALUES ('$first_name', '$last_name', '$email', '$gender', '$profession', '$description', '$agreement')";
 
-  if ($user_is_created = $mysqli->query($query)) {
+  if ($user_is_created = $link->query($query)) {
   } else {
-    echo("Error description: " . $mysqli -> error);
+    echo("Error description: " . $link -> error);
   }
 
   // Узнать id последнего сохраненного пользователя
-  $last_id=$mysqli->insert_id;
+  $last_id=$link->insert_id;
   
   // Создать директорию applicants
   $dir = "upload/applicants{$last_id}"; 
@@ -53,20 +38,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   // Загрузить файл
-  $path_file = NULL;
   if ($_FILES && $_FILES["filename"]["error"]== UPLOAD_ERR_OK){
     $path_file = "{$dir}/" . $_FILES["filename"]["name"];
     move_uploaded_file($_FILES["filename"]["tmp_name"], $path_file);
   }
 
   // Обновить applicants(file)  
-
   // UPDATE `applicants` SET `file` = 'upload/applicants19/ozero-gory-kamni-ogon-koster.png' WHERE `applicants`.`id` = 18
   $sql = "UPDATE applicants SET file = '{$path_file}' WHERE applicants.id = {$last_id}";
 
-  if (mysqli_query($mysqli, $sql)) {
+  if (mysqli_query($link, $sql)) {
   } else {
-    echo "ERROR: Could not able to execute $sql." . mysqli_error($mysqli);
+    echo "ERROR: Could not able to execute $sql." . mysqli_error($link);
   }
 }
 require 'page-contact-form.html';

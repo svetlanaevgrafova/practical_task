@@ -1,6 +1,8 @@
 <?php
 // Connect db
-$link = mysqli_connect("127.0.0.1", "minada", "fktrctqr");
+require "config.php";
+
+$link = mysqli_connect($servername, $username, $db_password);
 
 if ($link === false) {
     die("Ошибка: Не можем подключиться. " . mysqli_connect_error());

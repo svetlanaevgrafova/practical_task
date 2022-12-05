@@ -1,11 +1,5 @@
 <?php
-
-// Connect_with_select_db
-$link = mysqli_connect("127.0.0.1", "minada", "fktrctqr", "practical_task_evgrafova");
-
-if ($link === false) {
-    die("Ошибка: Не можем подключиться. " . mysqli_connect_error());
-}
+require "connect-select-db.php";
 
 // INSERT INTO
 
