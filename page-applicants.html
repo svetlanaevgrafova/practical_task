@@ -45,7 +45,9 @@
                   <td><?php echo $applicant['gender']; ?></td>
                   <td><?php echo $applicant['profession']; ?></td>
                   <td><?php echo $applicant['description']; ?></td>
-                  <td><?php echo $applicant['file']; ?></td>
+                  <td><a href="<?php echo "download.php?path=". $applicant['file']; ?>">
+                    <?php echo $applicant['file']; ?></a>
+                  </td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
