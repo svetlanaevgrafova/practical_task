@@ -2,8 +2,8 @@
 require "connect-select-db.php";
 
 // debug
-error_reporting(-1);
-ini_set('display_errors', 'On');
+// error_reporting(-1);
+// ini_set('display_errors', 'On');
 
 // create pagination
 // Поверка, есть ли GET запрос

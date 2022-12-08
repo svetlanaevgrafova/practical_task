@@ -2,8 +2,8 @@
 require "connect-select-db.php";
 require "test-input.php";
 // debug
-error_reporting(-1);
-ini_set('display_errors', 'On');
+// error_reporting(-1);
+// ini_set('display_errors', 'On');
  
 // Переменные для Валидации
 $first_name_err = $last_name_err = $email_err = $gender_err = $profession_err = $agreement_err = '';
@@ -134,7 +134,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       move_uploaded_file($_FILES["filename"]["tmp_name"], $path_file);
 
       // Обновить applicants(file)  
-      // UPDATE `applicants` SET `file` = 'upload/applicants19/ozero-gory-kamni-ogon-koster.png' WHERE `applicants`.`id` = 18
       $sql = "UPDATE applicants SET file = '{$path_file}' WHERE applicants.id = {$last_id}";
 
       if (mysqli_query($link, $sql)) {
@@ -144,24 +143,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Отправка почты
-    // $sql = "SELECT applicants(first_name, last_name, email, gender, profession, description) WHERE applicants.id = {$last_id}";
-    // if ($new_applicant = mysqli_query($link, $sql)) {
-    //   while($row = mysqli_fetch_array($new_applicant, MYSQLI_ASSOC)){
-    //     $applicants[] = $row;
-    //   }
-    // } else {
-    //   echo "ERROR: Could not able to execute $sql." . mysqli_error($link);
-    // }
-    
     $to  = $recipient_email;
     $subject = 'Added new applicants';
     $message = "Добавлен новый соискатель! <br> Имя: {$first_name} <br> Фамилия: $last_name <br> Email: $email <br> Профессия: $profession \r\n";
     $headers = implode("\r\n", ["MIME-Version: 1.0", "Content-type: text/html; charset=utf-8"]);;
 
     if (mail($to, $subject, $message, $headers)) {
-      echo "Электронное письмо успешно отправлено. \r\n";
+      // echo "Электронное письмо успешно отправлено. \r\n";
     } else {
-      echo "Электронное письмо не отправлено. <br />";
+      // echo "Электронное письмо не отправлено. <br />";
   
     }
 

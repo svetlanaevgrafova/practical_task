@@ -6,7 +6,7 @@ $sql = "CREATE TABLE applicants(
     id INT(8) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
-    email VARCHAR(70) NOT NULL UNIQUE,
+    email VARCHAR(70) NOT NULL,
     gender VARCHAR(10) NOT NULL,
     profession VARCHAR(70) NOT NULL,
     description TEXT(200),

@@ -3,8 +3,6 @@ if(isset($_GET['path']))
 {
 //Читать url
 
-                
-
 $url = $_GET['path'];//Очистить кэш
 clearstatcache();
 

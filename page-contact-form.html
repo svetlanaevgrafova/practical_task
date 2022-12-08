@@ -8,111 +8,232 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
+      .top-menu {
+        background-image: linear-gradient(
+          to left,
+          #000000,
+          #0376d4 50%,
+          #0062b3 50%
+        );
+        background-size: 200% 100%;
+        background-position: -100%;
+        display: inline-block;
+        margin: 15px;
+        padding: 5px 0;
+        position: relative;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .top-menu:before{
+        content: '';
+        background: #0968c2;
+        display: block;
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 3px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .top-menu:hover {
+      background-position: 0;
+      }
+
+      .top-menu:hover::before{
+        width: 100%;
+      }
+      
+      body {
+        
+        background-image: url(resours/fon.png);
+        background-position: center center;
+        background-attachment: fixed; 
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
       .card {
         box-shadow: 
           inset 
                 0 0  0 2px rgb(255,255,255),
                 0.3em 0.3em 1em rgba(0,0,0,0.3);
       }
+      
     </style>
   </head>
+
   <body>
-
-    <?php if(isset($user_is_created)) : ?>
-      <div class="alert alert-success" role="alert">
-        Заявка отправлена!
+    <div class="card-header bg-white">
+      <nav class="navbar navbar-light justify-content-center">
+        <a class="navbar-brand" href="">
+          <img src="/resours/logo.png" width="150" height="75" alt="логотип">
+        </a>
+        <ul class="nav nav justify-content-center">
+          <li class="nav-item">
+            <a class="top-menu nav-link" href="">Simtag Group</a>
+          </li>
+          <li class="nav-item">
+            <a class="top-menu nav-link" href="">Simtag Development</a>
+          </li>
+          <li class="nav-item">
+            <a class="top-menu nav-link" href="#">Вакансии</a>
+          </li>
+          <li class="nav-item">
+            <a class="top-menu nav-link" href="">Контакты</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="container-fluid my-5">
+      <div class="text-center my-5">
+        <h1 >
+          Вакансии
+        </h1>
       </div>
-    <?php else: ?>
-      <!-- <div class="alert alert-danger" role="alert">
-        Заявка не отправлена!
-      </div> -->
-    <?php endif; ?>
-    <div class="container my-5">
-      <div class="row">
-        <div class="col-sm-5 offset-md-3">
-          <div class="card p-3 mb-5 ">
-            <div class="card-body">
-              <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" enctype="multipart/form-data" id="form" required>
-                <h4 class="card-title card-title text-center">Форма связи</h4>
-
-                <div class="form-group my-3">
-                  <input type="text" class="form-control <?php echo $first_name_class;?>" id="first_name" name="first_name" value="<?php echo $first_name?>" placeholder="Имя" required>
-                  <div class="<?php echo $first_name_div_class; ?>">
-                    <?php echo $first_name_err; ?>
-                  </div>
-                </div>
-
-                <div class="form-group my-3">
-                  <input type="text" class="form-control <?php echo $last_name_class;?>" id="last_name" name="last_name" value="<?php echo $last_name?>" placeholder="Фамилия" required>
-                  <div class="<?php echo $last_name_div_class; ?>">
-                    <?php echo $last_name_err; ?>
-                  </div>
-                </div>
-
-                <div class="form-group my-3">
-                  <input type="email" class="form-control <?php echo $email_class;?>" id="email" name="email" value="<?php echo $email?>" aria-describedby="emailHelp" placeholder="Email" required>
-                  <div class="<?php echo $email_div_class; ?>">
-                    <?php echo $email_err; ?>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <p class="col-form-label col-sm-2 pt-0">Пол</p>
-                  <div class="col-sm-10">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input <?php echo $gender_class;?>" type="radio" name="gender" id="gender_man" 
-                        <?php echo (isset($gender) && $gender=="man") ? "checked" : null; ?>
-                      value="man">
-                      <label class="form-check-label" for="gender_man">Мужчина</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input <?php echo $gender_class;?>" type="radio" name="gender" id="gender_woman" 
-                        <?php echo (isset($gender) && $gender=="woman") ? "checked" : null; ?>
-                      value="woman">
-                      <label class="form-check-label" for="gender_woman">Женщина</label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group my-3">
-                  <select class="form-control <?php echo $profession_class;?>" value="<?php echo $profession?>" id="profession" name="profession">
-                    <option selected disabled>Выберите профессию</option>
-                    <option>Младший PHP разработчик (Junior)</option>
-                    <option>PHP разработчик (Middle)</option>
-                    <option>Ведущий PHP разработчик (Senior)</option>
-                  </select>
-                  <div class="<?php echo $profession_div_class; ?>">
-                    <?php echo $profession_err; ?>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <textarea class="form-control" id="textarea" name="description" rows="3" placeholder="Напишите о себе"></textarea>
-                </div>
-
-                <div class="custom-file">
-                  <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-                  <input type="file" class="custom-file-input" id="download_file" name="filename" size="10">
-                  <label class="custom-file-label" for="download_file">Загрузите резюме</label>
-                </div>
-
-                <div class="form-check my-3">
-                  <input class="form-check-input" type="checkbox" id="agreement" name="agreement" checked="checked" required>
-                  <label class="form-check-label" for="exampleCheck1">Согласен на обработку персональных данных</label>
-                </div>
-
-                <div class="form-group row my-3">
-                  <button class="btn btn-outline-primary form-control col-sm-5 mx-auto" type="submit">Отправить</button>
-                  <input class="btn btn-outline-primary form-control col-sm-5 mx-auto" type="reset" value="Стереть">
-                </div>
-                
-              </form>
-            </div>
-          </div>
+      <div class="row row-cols-3 justify-content-center">
+        <div class=" m-5">
+          <a class="nav-link  stretched-link" href="">
+          <img class="img-fluid" src="/resours/jun.png">
+          </a>
+        </div>
+        <div class=" m-5">
+          <a class="nav-link  stretched-link" href="">
+          <img class="img-fluid" src="/resours/middle.png">
+          </a>
+        </div>
+        <div class=" m-5">
+          <a class="nav-link  stretched-link" href="">
+          <img class="img-fluid" src="/resours/senior.png">
+          </a>
         </div>
       </div>
     </div>
+    <div class="row d-flex justify-content-center flex-wrap offset-md-2 m-5 my-5">
+      <h4 >
+        Если вас заинтересовала наша вакансия, свяжитесь с нами и мы рассмотрим вашу кандидатуру.
+      </h4>
+    </div>
+    <div class="container-fluid my-5">
+      <div class="card w-50 p-3 mx-auto">
+          <?php if(isset($user_is_created)) : ?>
+            <div class="alert alert-success" role="alert">
+              Заявка отправлена! Наши сотрудники свяжутся с Вами.
+            </div>
+          <?php else: ?>
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" enctype="multipart/form-data" id="form" required>
+              <h4 class="card-title card-title text-center">Форма связи</h4>
 
+              <div class="form-group my-3">
+                <input type="text" class="form-control <?php echo $first_name_class;?>" id="first_name" name="first_name" value="<?php echo $first_name?>" placeholder="Имя" required>
+                <div class="<?php echo $first_name_div_class; ?>">
+                  <?php echo $first_name_err; ?>
+                </div>
+              </div>
+
+              <div class="form-group my-3">
+                <input type="text" class="form-control <?php echo $last_name_class;?>" id="last_name" name="last_name" value="<?php echo $last_name?>" placeholder="Фамилия" required>
+                <div class="<?php echo $last_name_div_class; ?>">
+                  <?php echo $last_name_err; ?>
+                </div>
+              </div>
+
+              <div class="form-group my-3">
+                <input type="email" class="form-control <?php echo $email_class;?>" id="email" name="email" value="<?php echo $email?>" aria-describedby="emailHelp" placeholder="Email" required>
+                <div class="<?php echo $email_div_class; ?>">
+                  <?php echo $email_err; ?>
+                </div>
+              </div>
+
+              <div class="row">
+                <p class="col-form-label col-sm-3 pt-0">Пол</p>
+                <div class="col-sm-9">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input <?php echo $gender_class;?>" type="radio" name="gender" id="gender_man" 
+                      <?php echo (isset($gender) && $gender=="man") ? "checked" : null; ?>
+                    value="man">
+                    <label class="form-check-label" for="gender_man">Мужчина</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input <?php echo $gender_class;?>" type="radio" name="gender" id="gender_woman" 
+                      <?php echo (isset($gender) && $gender=="woman") ? "checked" : null; ?>
+                    value="woman">
+                    <label class="form-check-label" for="gender_woman">Женщина</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group my-3">
+                <select class="form-control <?php echo $profession_class;?>" value="<?php echo $profession?>" id="profession" name="profession">
+                  <option selected disabled>Выберите профессию</option>
+                  <option>Младший PHP разработчик (Junior)</option>
+                  <option>PHP разработчик (Middle)</option>
+                  <option>Ведущий PHP разработчик (Senior)</option>
+                </select>
+                <div class="<?php echo $profession_div_class; ?>">
+                  <?php echo $profession_err; ?>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <textarea class="form-control" id="textarea" name="description" rows="3" placeholder="Напишите о себе"></textarea>
+              </div>
+
+              <div class="custom-file">
+                <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                <input type="file" class="custom-file-input" id="download_file" name="filename" size="10">
+                <label class="custom-file-label" for="download_file">Загрузите резюме</label>
+              </div>
+
+              <div class="form-check my-3">
+                <input class="form-check-input" type="checkbox" id="agreement" name="agreement" checked="checked" required>
+                <label class="form-check-label" for="exampleCheck1">Согласен на обработку персональных данных</label>
+              </div>
+
+              <div class="form-group row my-3">
+                <button class="btn btn-outline-primary form-control col-sm-5 mx-auto" type="submit">Отправить</button>
+                <input class="btn btn-outline-primary form-control col-sm-5 mx-auto" type="reset" value="Стереть">
+              </div>
+              
+            </form>
+          <?php endif; ?>
+      </div>
+    </div>
+    <div class="card-footer text-muted bg-dark text-white">
+      <div class="row my-5">
+        <div class="col-md-2 offset-md-3 my-0">
+          <div>
+            <p>
+              424242, г. Ульяногорск, проезд Бирюзовый, 14Б
+            </p>
+          </div>
+          <div>
+            <p class="text-primary my-0">
+              HR‑служба: blabla@simtag.ru
+            </p>
+          </div>
+          <div>
+            <p class="text-primary my-0">
+              PR‑служба: bla@simtag.ru
+            </p>
+          </div>
+          <div>
+            <p class="text-primary my-0">
+              +7 (2248) 12-34-56
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-3">
+
+        </div>
+        <div class="col-sm-3">
+          <img src="/resours/logo.png" width="150" height="75" alt="">
+        </div>
+      </div>
+
+    </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
