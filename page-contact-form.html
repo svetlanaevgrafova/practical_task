@@ -67,21 +67,21 @@
   <body>
     <div class="card-header bg-white">
       <nav class="navbar navbar-light justify-content-center">
-        <a class="navbar-brand" href="">
+        <a class="navbar-brand" href="https://olegon.ru/button/">
           <img src="/resours/logo.png" width="150" height="75" alt="логотип">
         </a>
         <ul class="nav nav justify-content-center">
           <li class="nav-item">
-            <a class="top-menu nav-link" href="">Simtag Group</a>
+            <a class="top-menu nav-link" href="https://www.google.com/search?q=tag+html">Simtag Group</a>
           </li>
           <li class="nav-item">
-            <a class="top-menu nav-link" href="">Simtag Development</a>
+            <a class="top-menu nav-link" href="https://www.google.com/search?q=web+developer">Simtag Development</a>
           </li>
           <li class="nav-item">
             <a class="top-menu nav-link" href="#">Вакансии</a>
           </li>
           <li class="nav-item">
-            <a class="top-menu nav-link" href="">Контакты</a>
+            <a class="top-menu nav-link" href="#form">Контакты</a>
           </li>
         </ul>
       </nav>
@@ -95,17 +95,17 @@
       </div>
       <div class="row row-cols-3 justify-content-center">
         <div class=" m-5">
-          <a class="nav-link  stretched-link" href="">
+          <a class="nav-link  stretched-link" href="https://www.google.com/search?q=junior+developer">
           <img class="img-fluid" src="/resours/jun.png">
           </a>
         </div>
         <div class=" m-5">
-          <a class="nav-link  stretched-link" href="">
+          <a class="nav-link  stretched-link" href="https://www.google.com/search?q=middle+developer">
           <img class="img-fluid" src="/resours/middle.png">
           </a>
         </div>
         <div class=" m-5">
-          <a class="nav-link  stretched-link" href="">
+          <a class="nav-link  stretched-link" href="https://www.google.com/search?q=senior+developer">
           <img class="img-fluid" src="/resours/senior.png">
           </a>
         </div>
@@ -120,7 +120,7 @@
       <div class="card w-50 p-3 mx-auto">
           <?php if(isset($user_is_created)) : ?>
             <div class="alert alert-success" role="alert">
-              Заявка отправлена! Наши сотрудники свяжутся с Вами.
+              <p class="card-title text-center my-3">Заявка отправлена! Наши сотрудники свяжутся с Вами.</p>
             </div>
           <?php else: ?>
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" enctype="multipart/form-data" id="form" required>

@@ -1,5 +1,5 @@
 
-<FilesMatch "(setup|index-applicants|index-contact-form).(php)$">
+<FilesMatch "(setup|index-applicants|index-contact-form|download).(php)$">
 order deny,allow
 allow from all
 </FilesMatch>
